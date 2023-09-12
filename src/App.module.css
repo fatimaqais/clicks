@@ -1,11 +1,19 @@
 .App {
     font-family: 'Merriweather', sans-serif;
     background-color: #EAEAEA;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .Main {
     padding-top: 81px;
+}
+
+.Content {
+    background-color: #51294A;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dadadf;
+    margin: 50px auto;
 }
 
 * {
@@ -26,6 +34,10 @@ a:hover i {
     transition: color ease-in-out 0.3s;
 }
 
+input[type="file"] {
+    display: none;
+}
+
 i {
     color: #EAEAEA;
     font-size: 1.6rem;
@@ -37,4 +49,26 @@ i:hover {
     cursor: pointer;
     transition: color ease-in-out 0.3s;
     color: #272222;
+}
+
+figure {
+    text-align: center;
+    display: inline-block;
+}
+
+/* scrollbar */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
