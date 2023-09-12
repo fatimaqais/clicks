@@ -1,12 +1,29 @@
-.NavBar{
+.NavBar {
     background-color: #9B4C7D;
-    border: 5px solid #51294A;
+    border: 4px solid #51294A;
     color: #EAEAEA;
     font-weight: 700;
 }
 
-.logo{
-    margin-left: 10px;
+.logo {
+    text-decoration: none;
+}
+
+.logo span {
     color: #EAEAEA;
     font-size: 26px;
+    margin-left: 5px;
+}
+
+.NavLink {
+    padding: 5px;
+    text-decoration: none;
+}
+
+.Active {
+    color: #51294A;
+}
+
+.Active i {
+    color: #51294A;
 }
