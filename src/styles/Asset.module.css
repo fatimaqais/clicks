@@ -1,0 +1,15 @@
+.Asset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+    cursor: pointer;
+    color: #EAEAEA;
+}
+
+.Asset img {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+}

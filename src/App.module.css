@@ -1,7 +1,7 @@
 .App {
     font-family: 'Merriweather', sans-serif;
     background-color: #EAEAEA;
-    height: 100vh;
+    height: auto;
 }
 
 .Main {
@@ -9,12 +9,25 @@
 }
 
 .Content {
-    background-color: #51294A;
+    background-color: #4d3047;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #dadadf;
     margin: 50px auto;
 }
+
+.FillerImage {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+}
+
+.Image {
+    max-height: 40vh;
+    max-width: 100%;
+    object-fit: contain;
+}
+
 
 * {
     box-sizing: border-box;
@@ -49,11 +62,6 @@ i:hover {
     cursor: pointer;
     transition: color ease-in-out 0.3s;
     color: #272222;
-}
-
-figure {
-    text-align: center;
-    display: inline-block;
 }
 
 /* scrollbar */

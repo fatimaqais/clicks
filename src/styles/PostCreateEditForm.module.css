@@ -1,0 +1,23 @@
+.Container {
+    height: auto;
+    width: 90%;
+}
+
+.Input {
+    background: #9b4c7d;
+    border: 2px solid #f0f1f9;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: #EAEAEA;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+    width: -webkit-fill-available;
+}
+
+h1 {
+    text-align: center;
+    color: #433040;
+    margin-top: 20px;
+}
