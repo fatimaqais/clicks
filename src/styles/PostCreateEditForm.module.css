@@ -19,5 +19,9 @@
 h1 {
     text-align: center;
     color: #433040;
-    margin-top: 20px;
+    margin-top: 50px;
+}
+
+.Form {
+    color: #EAEAEA;
 }
