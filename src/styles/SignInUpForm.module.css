@@ -19,7 +19,6 @@
     font-style: normal;
     font-weight: bold;
     font-size: 46px;
-    line-height: 19px;
     text-align: center;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -48,12 +47,9 @@
     align-content: center;
 }
 
-.SignInCol {
-    height: 320px;
-}
-
-.SignUpCol {
-    height: 375px;
+.Signinup {
+    height: auto;
+    width: 80%;
 }
 
 .Form {
