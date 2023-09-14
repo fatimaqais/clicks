@@ -40,6 +40,7 @@ const SignUpForm = () => {
                 <h1 className={styles.Header}>Sign Up</h1>
                 <div className={styles.Form}>
                     <Form onSubmit={handleSubmit}>
+
                         <Form.Group className="" controlId="username">
                             <Form.Label className="d-none" >Username</Form.Label>
                             <Form.Control
@@ -52,8 +53,10 @@ const SignUpForm = () => {
                             />
                         </Form.Group>
                         {errors.username?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>{message}</Alert>
+                            <Alert variant="warning" className={styles.Alert} key={idx}>{message}</Alert>
                         ))}
+
+
                         <Form.Group className="mb-3" controlId="password1">
                             <Form.Label className="d-none">Password</Form.Label>
                             <Form.Control
@@ -66,9 +69,10 @@ const SignUpForm = () => {
                             />
                         </Form.Group>
                         {errors.password1?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>{message}</Alert>
+                            <Alert variant="warning" className={styles.Alert} key={idx}>{message}</Alert>
                         ))}
-                        <Form.Group className="mb-3" controlId="password2">
+
+                        <Form.Group className="mb-2" controlId="password2">
                             <Form.Label className="d-none">Confirm Password</Form.Label>
                             <Form.Control
                                 className={styles.Input}
@@ -80,16 +84,23 @@ const SignUpForm = () => {
                             />
                         </Form.Group>
                         {errors.password2?.map((message, idx) => (
-                            <Alert variant="warning" key={idx}>{message}</Alert>
+                            <Alert variant="warning" className={styles.Alert} key={idx}>{message}</Alert>
                         ))}
-                        <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
-                            Submit
-                        </Button>
-                        {errors.non_field_errors?.map((message, idx) => (
-                            <Alert className="col-md-5 mx-auto" key={idx} variant="warning">
-                                {message}
-                            </Alert>
-                        ))}
+
+                        <div>
+                            <div>
+                                <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
+                                    Submit
+                                </Button>
+                            </div>
+
+                            {errors.non_field_errors?.map((message, idx) => (
+                                <Alert className={styles.Alert} key={idx} variant="warning">
+                                    {message}
+                                </Alert>
+                            ))}
+
+                        </div>
                     </Form>
                     <Link className={styles.Link} to="/signin">
                         Already have an account? <span>Sign in</span>

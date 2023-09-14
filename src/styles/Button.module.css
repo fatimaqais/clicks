@@ -13,18 +13,22 @@
     opacity: 0.8;
     border-color: transparent;
     cursor: pointer;
+    background-color: #9B4C7D;
 }
 
 .Button:hover:active {
-    background-color: #9B4C7D !important;
+    background-color: #9B4C7D;
+    color: #EAEAEA;
 }
 
 .Button:active {
-    background-color: #9B4C7D !important;
+    background-color: #9B4C7D;
+    color: #EAEAEA;
 }
 
 .Button:focus {
     background-color: #9B4C7D;
+    color: #EAEAEA;
 }
 
 .Wide {
