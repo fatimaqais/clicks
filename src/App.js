@@ -9,22 +9,28 @@ import PostCreateForm from "./pages/posts/PostCreateForm";
 import EventCreateForm from "./pages/events/EventCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import EventPage from "./pages/events/EventPage"
+import PostsPage from "./pages/posts/PostsPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
+import EventsPage from "./pages/events/EventsPage";
 
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home Page</h1>} />
-          <Route exact path="/events" render={() => <h1>Events</h1>} />
+          <Route exact path="/" render={() => <PostsPage message="No results found!" />} />
+          <Route exact path="/events" render={() => <EventsPage message="Nor results found!" />} />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/posts/create" render={() => <PostCreateForm />}  />
-          <Route exact path="/posts/:id" render={()=> <PostPage />} />
-          <Route exact path="/events/create" render={() => <EventCreateForm />}  />
-          <Route exact path="/events/:id" render={() => <EventPage />}  />       
+          <Route exact path="/posts/create" render={() => <PostCreateForm />} />
+          <Route exact path="/posts/:id" render={() => <PostPage />} />
+          <Route exact path="/events/create" render={() => <EventCreateForm />} />
+          <Route exact path="/events/:id" render={() => <EventPage />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
