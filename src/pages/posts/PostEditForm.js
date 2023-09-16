@@ -28,10 +28,10 @@ function PostEditForm() {
         const handleMount = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/${id}`)
-                const { caption, image, is_owner} = data;
+                const { caption, image, is_owner } = data;
 
-                is_owner ? setPostData({ caption, image}) : history.push('/')
-            } catch (err){
+                is_owner ? setPostData({ caption, image }) : history.push('/')
+            } catch (err) {
                 console.log(err);
             }
         };
@@ -57,22 +57,25 @@ function PostEditForm() {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
+        event.preventDefault();
         const formData = new FormData();
 
-        formData.append('image', imageInput.current.files[0])
-        formData.append('caption', caption)
+        formData.append("caption", caption);
+
+        if (imageInput?.current?.files[0]) {
+            formData.append("image", imageInput.current.files[0]);
+        }
 
         try {
-            const { data } = await axiosReq.post("/posts/", formData);
-            history.push(`/posts/${data.id}`);
+            await axiosReq.put(`/posts/${id}`, formData);
+            history.push(`/posts/${id}`);
         } catch (err) {
             console.log(err);
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
         }
-    }
+    };
 
     const textFields = (
         <div className="text-center">
@@ -95,7 +98,7 @@ function PostEditForm() {
 
                 <div>
                     <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
-                        Create
+                        Edit Post
                     </Button>
                     <Button
                         className={`${btnStyles.Button} ${btnStyles.Bright}`}
@@ -112,30 +115,17 @@ function PostEditForm() {
             <h1 >Create a New Post!</h1>
             <Container className={`${appStyles.Content} ${styles.Container} text-center`}>
                 <Form.Group className="text-center">
-                    {image ? (
-                        <>
-                            <Asset src={image} rounded />
-                            <div>
-                                <Form.Label
-                                    htmlFor="image-upload"
-                                >
-                                    <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
-                                        Change Image
-                                    </Button>
-                                </Form.Label>
-                            </div>
-                        </>
-                    ) : (
+
+                    <Asset src={image} rounded />
+                    <div>
                         <Form.Label
-                            className="d-flex justify-content-center"
                             htmlFor="image-upload"
+                            className={`${btnStyles.Button} ${btnStyles.Bright}`}
                         >
-                            <Asset
-                                src={Upload}
-                                message="Click or tap to upload an image"
-                            />
+                            Change Image
                         </Form.Label>
-                    )}
+                    </div>
+
                     <Form.File
                         id="image-upload"
                         accept="image/*"
