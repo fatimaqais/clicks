@@ -128,11 +128,6 @@ function EventCreateForm() {
                         <option>Music</option>
                     </Form.Control>
                 </Form.Group>
-                {errors?.category?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
                 <div>
                     <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
                         Create
@@ -185,6 +180,11 @@ function EventCreateForm() {
                                 ref={imageInput}
                             />
                         </Form.Group>
+                        {errors?.image?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message = "Please insert an image."}
+                            </Alert>
+                        ))}
                         <div className="d-md-none">{textFields}</div>
                     </Container>
                 </Col>

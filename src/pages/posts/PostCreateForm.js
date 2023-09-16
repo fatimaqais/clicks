@@ -94,7 +94,7 @@ function PostCreateForm() {
     return (
         <Form onSubmit={handleSubmit}>
             <h1 >Create a New Post!</h1>
-            <Container className={`${appStyles.Content} ${styles.Container}`}>
+            <Container className={`${appStyles.Content} ${styles.Container} text-center` }>
                 <Form.Group className="text-center">
                     {image ? (
                         <>
@@ -127,6 +127,11 @@ function PostCreateForm() {
                         ref={imageInput}
                     />
                 </Form.Group>
+                {errors?.image?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message="Please insert an image."}
+                    </Alert>
+                ))}
                 <div>{textFields}</div>
             </Container>
         </Form>
