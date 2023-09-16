@@ -127,7 +127,7 @@ const Post = (props) => {
                     <Link to={`/posts/${id}`}>
                         <i className="far fa-comments" />
                     </Link>
-                    {comments_count}
+                    <span className='mr-2'>{comments_count}</span>
                 </div>
             </Card.Body>
         </Card>

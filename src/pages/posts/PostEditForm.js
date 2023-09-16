@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Form, Button, Container, Alert } from "react-bootstrap";
-import Upload from "../../assets/upload.png"
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
