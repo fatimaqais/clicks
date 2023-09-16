@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Form, Button, Container, Alert, Row, Col } from "react-bootstrap";
-import Upload from "../../assets/upload.png"
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
@@ -63,15 +62,17 @@ function EventEditForm() {
         event.preventDefault()
         const formData = new FormData();
 
-        formData.append('image', imageInput.current.files[0])
         formData.append('title', title)
         formData.append('details', details)
         formData.append('date', date)
         formData.append('category', category)
+        if (imageInput?.current?.files[0]) {
+            formData.append("image", imageInput.current.files[0]);
+        }
 
         try {
-            const { data } = await axiosReq.post("/events/", formData);
-            history.push(`/events/${data.id}`);
+            await axiosReq.put(`/events/${id}`, formData);
+            history.push(`/events/${id}`);
         } catch (err) {
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
@@ -146,7 +147,7 @@ function EventEditForm() {
                 </Form.Group>
                 <div>
                     <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit">
-                        Create
+                        Save Changes
                     </Button>
                     <Button
                         className={`${btnStyles.Button} ${btnStyles.Bright}`}
@@ -165,30 +166,15 @@ function EventEditForm() {
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container className={`${appStyles.Content} ${styles.Container}`}>
                         <Form.Group className="text-center">
-                            {image ? (
-                                <>
-                                    <Asset src={image} rounded />
-                                    <div>
-                                        <Form.Label
-                                            htmlFor="image-upload"
-                                        >
-                                            <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
-                                                Change Image
-                                            </Button>
-                                        </Form.Label>
-                                    </div>
-                                </>
-                            ) : (
+                            <Asset src={image} rounded />
+                            <div>
                                 <Form.Label
-                                    className="d-flex justify-content-center"
+                                    className={`${btnStyles.Button} ${btnStyles.Bright}`}
                                     htmlFor="image-upload"
                                 >
-                                    <Asset
-                                        src={Upload}
-                                        message="Click or tap to upload an image"
-                                    />
+                                    Change image
                                 </Form.Label>
-                            )}
+                            </div>
                             <Form.File
                                 id="image-upload"
                                 accept="image/*"
