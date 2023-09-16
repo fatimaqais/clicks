@@ -12,6 +12,7 @@ import EventPage from "./pages/events/EventPage"
 import PostsPage from "./pages/posts/PostsPage";
 import EventsPage from "./pages/events/EventsPage";
 import PostEditForm from "./pages/posts/PostEditForm";
+import EventEditForm from "./pages/events/EventEditForm";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/events/create" render={() => <EventCreateForm />} />
           <Route exact path="/events/:id" render={() => <EventPage />} />
+          <Route exact path="/events/:id/edit" render={() => <EventEditForm />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
