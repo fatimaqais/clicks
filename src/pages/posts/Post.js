@@ -5,6 +5,8 @@ import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from '../../components/MoreDropdown';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Post = (props) => {
     const {
@@ -24,10 +26,24 @@ const Post = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
+    const history = useHistory();
+
+    const handleEdit = () => {
+        history.push(`/posts/${id}/edit`);
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/posts/${id}`);
+            history.goBack();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const handleLike = async () => {
         try {
-            const { data } = await axiosRes.post("/likes/", {post:id});
+            const { data } = await axiosRes.post("/likes/", { post: id });
             setPosts((prevPosts) => ({
                 ...prevPosts,
                 results: prevPosts.results.map((post) => {
@@ -68,8 +84,13 @@ const Post = (props) => {
                         </div>
                     </Link>
                     <div className="d-flex-end align-items-center">
-                        <span>{updated_at}</span>
-                        {is_owner && postPage && "..."}
+                        <span className={styles.DropDown}>{updated_at}
+                        {is_owner && postPage && (
+                            <MoreDropdown
+                                handleEdit={handleEdit}
+                                handleDelete={handleDelete}
+                            />
+                        )}</span>
                     </div>
                 </Media>
             </Card.Body>
