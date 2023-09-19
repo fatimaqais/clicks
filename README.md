@@ -8,7 +8,7 @@ This fictional site was created for Portfolio Project #5 (Advanced Front End) - 
 
 [View live website here](https://clicks-frontend-d0ce66e4d476.herokuapp.com/)
 
-![Responsive design]()
+![Responsive design](images/mockup.png)
 
 ## Table of Contents
 
@@ -28,11 +28,9 @@ This fictional site was created for Portfolio Project #5 (Advanced Front End) - 
   * [Navigation](#navigation)
   * [Authentication](#authentication)
   * [Homepage](#homepage)
-  * [Posts](#posts)
-  * [Events](#events)
-  * [Create an Event](#create-an-event)
-  * [Event Detail Page](#event-detail-page)
-  * [Reviews](#reviews)
+  * [Events and Posts](#events-and-posts)
+  * [Create an Event or Post](#create-an-event-or-post)
+  * [Event and Post Detail Page](#event-and-post-detail-page)
   * [Profile Page](#profile-page)
   * [Reusable React Components](#reusable-react-components)
 
@@ -151,7 +149,147 @@ The main font used for the site is 'Merriweather' with a fallback font of Sans-S
 
 [Back to top](<#table-of-contents>)
 
+# **Existing Features**
 
+* ## Navigation
+
+The navigation bar is very clean and straight forward. Depending on whether you are logged in or not, different menus are visible for the site user. For tablet and mobile devices, the navigation bar menu turns into a hamburger dropdown list. 
+
+On accessing the site for the first time, the user is logged out and the following menu items are visible:
+
+* Clicks Logo - On the far left hand side of the navigatin bar is the Happening brand logo. This is visible throughout the site to all user types and contains a link back to the homepage. 
+* Home - the first menu item, and the initial default start page, is 'Home', where all events shared among the community are displayed. 
+* Events - the secind menu item, and the initial default start page, is 'Home', where all events shared are displayed.
+* Authentication - Then the last two options are a sign in and signup options.
+
+![Logged out Navbar](images/loggedout-nav.png)
+![Logged out Navbar Mobile](images/loggedout-nav-mobile.png)
+
+Once the user logs in, additional links become available to select:
+
+* Add Events - Logged in users can create events and share it with others.
+* Reviews - Logged in users can leave reviews and read reviews about events. Users can only leave one review on a post.
+* Authentication - The icons within the authentication change once a user has logged in, and now display a link to the user's own profile page and a link to sign out of the site. 
+* Add Post - Logged in users can access the post creation page to share their own post to the site. 
+* Comments - Users can read and create comments on a post 
+
+![Logged in Navbar](images/navbar-loggedin.jpg)
+![Logged in Navbar Mobile](images/navbar-loggedin-mobile.jpg)
+
+## Authentication
+
+Users who are new to the site, or haven't previously created an account can click on the Signup Menu option on the Navigation Bar to create a user account.  I have used the standard dj-rest/auth/registration user account signup process for this. 
+
+![Sign up](images/signup.png)
+
+If a user has a Clicks account, they can click on the Signin menu option in the Navigation Bar to sign into their account.
+
+![Sign in](images/signin.png)
+
+If the user wishes to sign out, once signed in, the sign out option becomes visible in the Navigation Bar for them to select.
+
+![Sign Out](images/signout.png)
+
+* ## Homepage
+
+### Popular Profiles Component
+
+The popular profiles component is a permanent feature across the entire site. It appears at the top of all pages. This component uses a filter to order all site users by followers count from highest to lowest. The users with the highest follower count are determined to be the most popular profiles and the top ones are displayed to other users. This feature i staken from the [code institute](https://learn.codeinstitute.net) moments project.
+
+If the user isn't logged in, they can see avatar, and the username of the top 6 most popular profiles, and if the user is logged in, they will also see a button enabling them to follow or unfollow the profile. Due to the lack of time, I wasn't able to finish up the styling of this feature.
+
+![Popular Profiles - logged out](images/profiles-loggedout.png)
+![Popular Profiles - logged in](images/profiles.png)
+
+Each profile avatar can be clicked on to view the full profile page of that user. 
+
+### Events and Posts
+
+All events that are created through the Clicks sharing platform are displayed on the Homepage. All events created are requested from the API and they are ordered by the created date starting with the most recently posted and working backwards. 
+
+![Event](images/eventpage.png)
+
+
+Each event posting displays the user who shared it and the date it was shared. The event poster is in the center, and underneath are the event details. The event details includes the title, date, details and category of the event.
+
+Each event has a like button and a comment showing the numbers of likes and reviews on an event.
+
+The like button allows the user to click on the like to show they liked it and can again click on it to remove their like. By clicking on the review page user is taken to another page where they can create reviews.
+
+By clicking on the event image or the reviews count, the user is taken to the event details page.
+
+![Post Page](images/postpage.png)
+
+The post page is very similar to the events page as it also has a like and comment feature. The post page is also ordered by the most recently created posts displayed at the top of the page.
+
+### Search
+
+- Search - The user can search all the events listed by event title, username who posted it, or category. This allows the user to look for a post quickly and more efficiently if there is a lot of posts
+
+![Search](images/search.png)
+
+
+* ## Create an Event or Post
+
+If you are logged in, you are able to share new events and posts with other users. By clicking on the Add Event or Add Post menu option in the Navigation Bar, you are taken to the Share a New Event page or share new post page, where you can submit the event/post created form to the API.
+
+All fields i bothe the models are compulsory for the users to fill as it gives back an error. The category field in create event has an option already selected for the user so they are informed to choose a category or leave it as 'general'.
+
+![Create an Event](images/create-event.png)
+
+![Create a post](images/create-post.png)
+
+* ## Event and Post Detail Page
+
+In the event and post details page you can see just one post at a time. You can read the reviews and comments on these. You are also given an option to edit or delete your own post/event if you are logged in. This option is not visible to users who are logged out.
+
+![Edit an event/post](images/edit-option.png)
+
+On the top corners the 3 dots are displayed to the user so they can make changes or delete a post.
+
+![option](images/options.png)
+
+Once the user clicks on these options these are the 2 icons displayed to them.
+
+Below the event details is the comments section. If there are no comments yet, the user will see a message telling them that there are no comments. 
+
+If the user is not logged in, they can read any comments that have been posted but they can't post a comment themselves unless they log in. 
+
+![Comments - not logged in](images/comments-loggedout.png)
+
+Any comments that have been posted about this event are displayed, regardless of login status. If the user logs in they will see a comment form above the existing comments where they can post their own comments about the event for other users to read. 
+
+![Comments](images/comments-loggedin.png)
+
+This is the same for both the events and posts page. User can leave a review/comment if logged in. They both are very similar, only review field has an extra input option for category.
+
+![Write a Review or Comment](images/review-comment.png)
+
+The users can edit their comments or reviews if they are logged in. 
+
+![Edit a review or comment](images/edit-comment.png)
+
+* ## Profile Page
+
+Throughout the site, wherever you see profile avatars, albeit in the popular profiles component, or next to events/posts, comments or reviews that have been published, you can click on the avatar to view the full profile page of that user. In the Navigation Bar, in the authentication dropdown, you can access your own profile page as well.  
+
+![profile icon](images/avatar.png)
+
+The profile page shows the users total post, events, followings and followers. Due to the lack of time on thei project I wasn't able to finish up this page but it was the same as the moments app.
+
+![profile page](images/profile-page.png)
+
+* ## Reusable React Components
+
+### Three Dots Edit Delete Dropdown Menu
+
+Based on the Moments walkthrough project 'MoreDropdown' component, I have utilised the same idea in my project but extended it's use even further to be accessed when editing or deleting events, comments and also reviews. 
+
+# **Features Left to Implement**
+
+- I would like to add an option where users can chat with each other. This could have been implemented if we had more time on this project.
+- I would like to add an option for users upvote an event so it can be promoted more.
+- I would like to add a feature where we can see how many people are attending an event.
 
 # **Technologies Used - Frontend**
 
