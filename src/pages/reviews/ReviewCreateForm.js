@@ -9,7 +9,7 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
 function ReviewCreateForm(props) {
-    const { id, event, setReviews, profile_id, profileImage } = props;
+    const { event, setReviews, setEvent, profile_id, profileImage } = props;
 
     const [review, setFormContent] = useState("");
     const [rating, setFormRating] = useState();
@@ -25,20 +25,22 @@ function ReviewCreateForm(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axiosRes.post(`/eventreviews/`, {
+            const { data } = await axiosRes.post(`/eventreviews/`, {
                 review,
                 rating,
                 event
             });
             setReviews((prevReviews) => ({
                 ...prevReviews,
-                results: prevReviews.results.map((eventreviews) => {
-                    return eventreviews.id === id
-                        ? {
-                            ...eventreviews,
-                        }
-                        : eventreviews;
-                }),
+                results: [data, ...prevReviews.results],
+            }));
+            setEvent((prevEvent) => ({
+                results: [
+                    {
+                        ...prevEvent.results[0],
+                        reviews_count: prevEvent.results[0].reviews_count + 1,
+                    },
+                ],
             }));
         } catch (err) {
             // console.log(err);
@@ -46,43 +48,43 @@ function ReviewCreateForm(props) {
     };
 
 
-return (
-    <Form onSubmit={handleSubmit}>
-        <Form.Group>
-            <InputGroup>
-                <Link to={`/profiles/${profile_id}`}>
-                    <Avatar src={profileImage} />
-                </Link>
-                <Form.Control
-                    className={styles.Form}
-                    placeholder="my comment..."
-                    as="textarea"
-                    value={review}
-                    onChange={handleChange}
-                    rows={2}
-                />
-                <Form.Control className={`${styles.Input}`}
-                    as="select"
-                    name="rating"
-                    value={rating}
-                    onChange={handleRating}
-                >
-                    <option>Excellent</option>
-                    <option>Good</option>
-                    <option>Average</option>
-                    <option>Bad</option>
-                    <option>Horrible</option>
-                </Form.Control>
-            </InputGroup>
-        </Form.Group>
-        <button
-            className={`${styles.Button} d-block `}
-            type="submit"
-        >
-            Post
-        </button>
-    </Form>
-);
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Form.Group>
+                <InputGroup>
+                    <Link to={`/profiles/${profile_id}`}>
+                        <Avatar src={profileImage} />
+                    </Link>
+                    <Form.Control
+                        className={styles.Form}
+                        placeholder="my comment..."
+                        as="textarea"
+                        value={review}
+                        onChange={handleChange}
+                        rows={2}
+                    />
+                    <Form.Control className={`${styles.Input}`}
+                        as="select"
+                        name="rating"
+                        value={rating}
+                        onChange={handleRating}
+                    >
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Average</option>
+                        <option>Bad</option>
+                        <option>Horrible</option>
+                    </Form.Control>
+                </InputGroup>
+            </Form.Group>
+            <button
+                className={`${styles.Button} d-block `}
+                type="submit"
+            >
+                Post
+            </button>
+        </Form>
+    );
 }
 
 export default ReviewCreateForm;
