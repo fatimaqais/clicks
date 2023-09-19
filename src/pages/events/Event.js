@@ -14,7 +14,7 @@ const Event = (props) => {
         owner,
         profile_id,
         profile_image,
-        comments_count,
+        reviews_count,
         eventlikes_count,
         event_like_id,
         title,
@@ -46,7 +46,7 @@ const Event = (props) => {
 
     const handleLike = async () => {
         try {
-            const { data } = await axiosRes.event("/eventlikes/", { event: id });
+            const { data } = await axiosRes.post("/eventlikes/", { event: id });
             setEvents((prevEvents) => ({
                 ...prevEvents,
                 results: prevEvents.results.map((event) => {
@@ -67,7 +67,7 @@ const Event = (props) => {
                 ...prevEvents,
                 results: prevEvents.results.map((event) => {
                     return event.id === id
-                        ? { ...event, likes_count: event.eventlikes_count - 1, like_id: null }
+                        ? { ...event, eventlikes_count: event.eventlikes_count - 1, like_id: null }
                         : event;
                 }),
             }));
@@ -131,7 +131,7 @@ const Event = (props) => {
                     <Link to={`/events/${id}`}>
                         <i className="far fa-comments" />
                     </Link>
-                    {comments_count}
+                    {reviews_count}
                 </div>
             </Card.Body>
         </Card>

@@ -1,0 +1,44 @@
+.Form {
+    border: none;
+    border-bottom: 2px #9B4C7D solid;
+    width: 90%;
+}
+
+.Button {
+    border: none;
+    background-color: #9B4C7D;
+    color: #EAEAEA;
+    border-radius: 100px;
+    padding: 4px 10px;
+    min-width: 75px;
+    margin: 5% 80% 5%;
+}
+
+.Button:hover {
+    cursor: pointer;
+    background-color: #9B4C7D;
+    color: #EAEAEA;
+}
+
+.Dropdown {
+    width: 200px;
+    margin: 10px 40px;
+}
+
+.Input {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.Image {
+    width: 30%;
+    height: auto;
+    object-fit: contain;
+    display: -webkit-inline-box;
+}
+
+.text {
+    text-align: center;
+}

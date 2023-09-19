@@ -1,0 +1,37 @@
+.Owner {
+    font-weight: bold;
+    color: #EAEAEA;
+    margin-right: 8px;
+}
+
+.Date {
+    font-weight: lighter;
+    color: #c1c1c5;
+    font-size: small;
+}
+
+.CommentOwner {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.Text {
+    color: #EAEAEA;
+    width: 100%;
+    margin-left: 60px;
+}
+
+.Image {
+    width: 30%;
+    height: auto;
+    border: 2px solid #EAEAEA;
+    display: flex;
+}
+
+.Col {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+}

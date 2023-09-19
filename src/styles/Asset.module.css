@@ -13,3 +13,8 @@
     height: auto;
     object-fit: contain;
 }
+
+.Asset p {
+    width: 200px;
+    text-align: center;
+}
