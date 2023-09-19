@@ -43,7 +43,6 @@ function ReviewCreateForm(props) {
                 ],
             }));
         } catch (err) {
-            // console.log(err);
         }
     };
 

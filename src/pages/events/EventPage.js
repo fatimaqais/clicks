@@ -27,10 +27,9 @@ function EventPage() {
                     axiosReq.get(`/eventreviews/?events=${id}`)
                 ]);
                 setEvent({ results: [event] });
-                setReviews(eventreviews)
-                console.log(event);
+                setReviews(eventreviews);
             } catch (err) {
-                console.log(err);
+
             }
         };
 

@@ -34,7 +34,6 @@ function EventEditForm() {
 
                 is_owner ? setEventData({ title, details, date, category, image }) : history.push('/')
             } catch (err) {
-                console.log(err);
             }
         };
 
