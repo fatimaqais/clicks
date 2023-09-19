@@ -42,7 +42,7 @@ This fictional site was created for Portfolio Project #5 (Advanced Front End) - 
     * [Languages](<#languages>)
     * [Frameworks Software & Libraries](<#frameworks-software--libraries>)
     * [Libraries](<#libraries>)
-- [Agile Workflow](#agile-workflow)
+- [Project Management](#project-management)
   * [Github Project Board](#github-project-board)
 - [Testing](#testing)
 - [Deployment](#deployment)
@@ -81,9 +81,7 @@ All the models have been set up in a separate DRF repository. Click [here](https
 
 ## Wireframes
 
-Thw wireframes were created for this app just to create an idea of what this app will look like 
-
-
+The wireframes for this project were not created as the project was structered very similarly to the code institute moments walk through project.
 
 ## User Stories
 Here I have listed the main user stories for a user who is not logged in, or has no account and a logged in user. These user stories were then tested and confirmed in the [Testing](<#testing>) section.
@@ -141,15 +139,15 @@ Clicks is split up in two parts: when the user is logged out and when the user i
 
 * ### Color Scheme
 
-When deciding on the colour scheme for my site, I looked at other content sharing platforms such as Facebook, Instagram and Eventbrite for inspiration. All of these use a very neutral color scheme with barely any background colour at all, and then just hints of brand color here and there to let the buttons stand out. In order to follow a similar approach, I chose a very neutral background color and then complimentary pink and purple tones for the icons and buttons. 
+When deciding on the colour scheme for my site, I decided to go for very nice and welcoming colours such as pink and purple. I chose a neutral background color and complimentary pink and purple tones for the icons and buttons. 
 
-![Colour Palette](images/color-palette.png)
+![Colour Palette](images/coolors.png)
 
 * ### Typography
 
-The main font used for the site is 'Montserrat' with a fallback font of Sans-Serif just in case it doesn't load. This font is nice and clear to read even though the platform in general is not text-heavy. 
+The main font used for the site is 'Merriweather' with a fallback font of Sans-Serif just in case it doesn't load. This font is nice and clear to read even though the platform in general is not text-heavy. 
 
-![Typography](images/typography.jpg)
+![Typography](images/merriweather.png)
 
 [Back to top](<#table-of-contents>)
 
