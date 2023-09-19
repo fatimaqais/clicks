@@ -9,7 +9,7 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
 function ReviewCreateForm(props) {
-    const { id, setReviews, profile_id, profileImage } = props;
+    const { id, event, setReviews, profile_id, profileImage } = props;
 
     const [review, setFormContent] = useState("");
     const [rating, setFormRating] = useState();
@@ -28,6 +28,7 @@ function ReviewCreateForm(props) {
             await axiosRes.post(`/eventreviews/`, {
                 review,
                 rating,
+                event
             });
             setReviews((prevReviews) => ({
                 ...prevReviews,
