@@ -18,11 +18,13 @@ import {
     useProfileData,
     useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -31,7 +33,7 @@ function ProfilePage() {
     const currentUser = useCurrentUser();
     const { id } = useParams();
 
-    const setProfileData = useSetProfileData();
+    const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
     const { pageProfile } = useProfileData();
 
     const [profile] = pageProfile.results;
@@ -42,7 +44,7 @@ function ProfilePage() {
             try {
                 const [{ data: pageProfile }, { data: profilePosts }] =
                     await Promise.all([
-                        axiosReq.get(`/profiles/${id}`),
+                        axiosReq.get(`/profiles/${id}/`),
                         axiosReq.get(`/posts/?owner__profile=${id}`),
                     ]);
                 setProfileData((prevState) => ({
@@ -52,7 +54,7 @@ function ProfilePage() {
                 setProfilePosts(profilePosts);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
         fetchData();
@@ -60,6 +62,7 @@ function ProfilePage() {
 
     const mainProfile = (
         <>
+            {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
                     <Image
@@ -74,6 +77,10 @@ function ProfilePage() {
                         <Col xs={3} className="my-2">
                             <div>{profile?.posts_count}</div>
                             <div>posts</div>
+                        </Col>
+                        <Col xs={3} className="my-2">
+                            <div>{profile?.events_count}</div>
+                            <div>events</div>
                         </Col>
                         <Col xs={3} className="my-2">
                             <div>{profile?.followers_count}</div>
@@ -91,14 +98,14 @@ function ProfilePage() {
                         (profile?.following_id ? (
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                                onClick={() => { }}
+                                onClick={() => handleUnfollow(profile)}
                             >
                                 unfollow
                             </Button>
                         ) : (
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                onClick={() => { }}
+                                onClick={() => handleFollow(profile)}
                             >
                                 follow
                             </Button>
