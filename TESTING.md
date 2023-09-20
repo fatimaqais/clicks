@@ -148,3 +148,39 @@ I carried out the following manual tests to check all the user story scenarios:
 | &cross; | On clicking edit profile, user is redirected to the edit profile page
 | &cross; | User can edit their own username via the three dots edit profile menu
 | &cross; | User can edit their own password via the three dots edit profile menu
+
+## Responsiveness Testing
+
+The responsive design tests were carried out manually throughout the build using Google Chrome Dev Tools. I based the main design around a desktop view, as this is primarily a browser based platform, although I have added responsive design for tablet and mobile devices as well. 
+
+### Browser Compatibility 
+
+Clicks was tested on the following browsers:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+
+The layout and responsiveness is consistent and works on every browser. I did not carry out alot of mobile devices testing as my main aim was to make this site responsive on laptop or computers but it's still responsive on mobile device. I have tested using dev tools and the site was reponsive on iphone 12, moto g4 and iphone x.
+
+## Lighthouse Testing
+
+Google Lighthouse in Chrome Developer Tools was used to test the application within the areas of *Performance*, *Accessibility*, *Best Practices* and *SEO*. The testing showed the following:
+
+![Lighthouse Homepage Result](images/testing/lighthouse.png)
+
+## Known Bugs
+
+### Resolved Bugs
+
+- I had a problem having the like button change colour when the user has either liked it unliked it without having to reload the page. This was resolved by removing the "/" at the end of post request URL.  
+
+- I had a problem with the create event review form being submitted correctly but not diplaying the review straight away. This was resolved by defining th event field and using the Dev tools application feature and console logs to find out the errors it was displaying.
+
+### Unresolved Bugs
+
+- I was not able to complete the form and get it to display the events_count, post_count, following_count and followed_count. This was due to lack of time. This is something which can be easily resolved only if there was more time.
+
+- I had a problem with the comments and reviews linking to the correct post/event with it's id. This could not be resolved and it was something tutor support couldn't help with either. Beacuse it was taking too much of my time this had to be left as it is.
+
+- I had a problem with profile page displaying all the posts/events instead of just the users owned posts/events. Again this was something that could have been resolved if given more time a I did not have enough time to work on the profiles page.
