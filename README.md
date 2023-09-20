@@ -363,6 +363,13 @@ A Git clone creates a linked copy of the project that will continue to synchroni
 
 # Credits
 
+- The image for the page was taken from [Pexels](https://www.pexels.com/)
+- The logo for this project was taken from [Flaticon](https://www.flaticon.com/)
+- Ideas were taken for what I was hoping to create by seeing multiple users projects on [Slack](https://slack.com/intl/en-gb) and then customising it to my own liking.
+- The biggest credit goes to [Code Institute](https://learn.codeinstitute.net/) as the project was mainly inspired by their momnets walk-through project and the code is also written as how they explained it showed it to us on the course.
+
 # Acknowledgements
+
+This site was created for the purpose of Code Institutes Advanced Front End Portfolio Project. I would like to thank my mentor Jubril for his support form the begining and the tutors who helped me understand and build amazing projects.
 
 [Back to top](<#table-of-contents>)
