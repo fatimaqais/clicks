@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import { Col, Row, Container } from "react-bootstrap";
 
 import Asset from "../../components/Asset";
 
@@ -13,22 +11,17 @@ import btnStyles from "../../styles/Button.module.css";
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import {
     useProfileData,
     useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Post from "../posts/Post";
-import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.png";
-import { ProfileEditDropdown } from "../../components/MoreDropdown";
+import { Button, Image } from "react-bootstrap";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
-    const [profilePosts, setProfilePosts] = useState({ results: [] });
 
     const currentUser = useCurrentUser();
     const { id } = useParams();
@@ -36,24 +29,37 @@ function ProfilePage() {
     const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
     const { pageProfile } = useProfileData();
 
-    const [profile] = pageProfile.results;
-    const is_owner = currentUser?.username === profile?.owner;
+    const [profiles] = pageProfile.results;
+    const is_owner = currentUser?.username === profiles?.owner;
+
+    const history = useHistory();
+
+    const handleEdit = () => {
+        history.push(`/profiles/${id}/edit`);
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/profiles/${id}`);
+            history.goBack();
+        } catch (err) {
+        }
+    };
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [{ data: pageProfile }, { data: profilePosts }] =
+                const [{ data: pageProfile }] =
                     await Promise.all([
-                        axiosReq.get(`/profiles/${id}/`),
-                        axiosReq.get(`/posts/?owner__profile=${id}`),
+                        axiosReq.get(`/profiles/${id}`),
                     ]);
                 setProfileData((prevState) => ({
                     ...prevState,
                     pageProfile: { results: [pageProfile] },
                 }));
-                setProfilePosts(profilePosts);
                 setHasLoaded(true);
             } catch (err) {
+                console.log(err);
             }
         };
         fetchData();
@@ -61,32 +67,31 @@ function ProfilePage() {
 
     const mainProfile = (
         <>
-            {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
                     <Image
                         className={styles.ProfileImage}
                         roundedCircle
-                        src={profile?.image}
+                        src={profiles?.image}
                     />
                 </Col>
-                <Col lg={6}>
-                    <h3 className="m-2">{profile?.owner}</h3>
+                <Col lg={6} className={styles.Text}>
+                    <h3 className="m-2">{profiles?.owner}</h3>
                     <Row className="justify-content-center no-gutters">
                         <Col xs={3} className="my-2">
-                            <div>{profile?.posts_count}</div>
+                            <div>{profiles?.posts_count}</div>
                             <div>posts</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profile?.events_count}</div>
+                            <div>{profiles?.events_count}</div>
                             <div>events</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profile?.followers_count}</div>
+                            <div>{profiles?.followers_count}</div>
                             <div>followers</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profile?.following_count}</div>
+                            <div>{profiles?.following_count}</div>
                             <div>following</div>
                         </Col>
                     </Row>
@@ -94,48 +99,36 @@ function ProfilePage() {
                 <Col lg={3} className="text-lg-right">
                     {currentUser &&
                         !is_owner &&
-                        (profile?.following_id ? (
+                        (profiles?.following_id ? (
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                                onClick={() => handleUnfollow(profile)}
+                                onClick={() => handleUnfollow(profiles)}
                             >
                                 unfollow
                             </Button>
                         ) : (
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.Black}`}
-                                onClick={() => handleFollow(profile)}
+                                onClick={() => handleFollow(profiles)}
                             >
                                 follow
                             </Button>
                         ))}
+                    <div className="d-flex-end align-items-center">
+                        <span className={styles.DropDown}>
+                            {is_owner && ProfilePage && (
+                                <MoreDropdown
+                                    handleEdit={handleEdit}
+                                    handleDelete={handleDelete}
+                                />
+                            )}</span>
+                    </div>
                 </Col>
-                {profile?.content && <Col className="p-3">{profile.content}</Col>}
+                <hr />
+                <p className={`"text-center" ${styles.Text}`}>About Me</p>
+                <hr />
+                <p className={`"text-center" ${styles.Text}`}>{profiles?.status}</p>
             </Row>
-        </>
-    );
-
-    const mainProfilePosts = (
-        <>
-            <hr />
-            <p className="text-center">{profile?.owner}'s posts</p>
-            <hr />
-            {profilePosts.results.length ? (
-                <InfiniteScroll
-                    children={profilePosts.results.map((post) => (
-                        <Post key={post.id} {...post} setPosts={setProfilePosts} />
-                    ))}
-                    dataLength={profilePosts.results.length}
-                    loader={<Asset spinner />}
-                    hasMore={!!profilePosts.next}
-                    next={() => fetchMoreData(profilePosts, setProfilePosts)}
-                />
-            ) : (
-                <Asset
-                    src={NoResults}
-                    message={`No results found, ${profile?.owner} hasn't posted yet.`}
-                />
-            )}
         </>
     );
 
@@ -147,7 +140,6 @@ function ProfilePage() {
                     {hasLoaded ? (
                         <>
                             {mainProfile}
-                            {mainProfilePosts}
                         </>
                     ) : (
                         <Asset spinner />
