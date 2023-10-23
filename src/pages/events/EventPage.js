@@ -24,7 +24,7 @@ function EventPage() {
             try {
                 const [{ data: event }, { data: eventreviews }] = await Promise.all([
                     axiosReq.get(`/events/${id}`),
-                    axiosReq.get(`/eventreviews/?events=${id}`)
+                    axiosReq.get(`/eventreviews/?event=${id}`)
                 ]);
                 setEvent({ results: [event] });
                 setReviews(eventreviews);
