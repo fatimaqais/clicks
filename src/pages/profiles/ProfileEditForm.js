@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
+import { Col, Row, Container, Alert, Image, Form, Button } from "react-bootstrap";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import {
@@ -99,15 +93,14 @@ const ProfileEditForm = () => {
                     {message}
                 </Alert>
             ))}
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => history.goBack()}
-            >
-                cancel
-            </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                save
-            </Button>
+            <div>
+                <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} onClick={() => history.goBack()}>
+                    Cancel
+                </Button>
+                <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} type="submit" onClick={() => history.goBack()}>
+                    Save
+                </Button>
+            </div>
         </>
     );
 
@@ -129,7 +122,7 @@ const ProfileEditForm = () => {
                             ))}
                             <div>
                                 <Form.Label
-                                    className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
+                                    className={`${btnStyles.Button} my-auto`}
                                     htmlFor="image-upload"
                                 >
                                     Change the image

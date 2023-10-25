@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/Profile.module.css";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
@@ -15,7 +16,7 @@ const PopularProfiles = ({ mobile }) => {
         >
             {popularProfiles.results.length ? (
                 <>
-                    <p>Most followed profiles.</p>
+                    <p className={`mx-2 ${styles.WordBreak} ${styles.Text}`}>Most followed profiles</p>
                     {mobile ? (
                         <div className="d-flex justify-content-around">
                             {popularProfiles.results.slice(0, 4).map((profile) => (
