@@ -14,7 +14,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-function EventsPage(message, filter = "") {
+function EventsPage({ message, filter = "" }) {
     const [events, setEvents] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
@@ -55,7 +55,7 @@ function EventsPage(message, filter = "") {
                         onChange={(event) => setQuery(event.target.value)}
                         type="text"
                         className="mr-sm-2"
-                        placeholder="Search posts"
+                        placeholder="Search events"
                     />
                 </Form>
 
