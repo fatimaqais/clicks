@@ -12,6 +12,7 @@ import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostPage() {
     const { id } = useParams();
@@ -19,17 +20,18 @@ function PostPage() {
 
     const currentUser = useCurrentUser();
     const profile_image = currentUser?.profile_image;
-    const [comments, setComments] = useState({ results: [] });
+    const [comment, setComments] = useState({ results: [] });
 
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const [{ data: post }, { data: comments }] = await Promise.all([
+                const [{ data: post }, { data: comment }] = await Promise.all([
                     axiosReq.get(`/posts/${id}`),
                     axiosReq.get(`/comments/?post=${id}`)
                 ]);
                 setPost({ results: [post] });
-                setComments(comments)
+                console.log(await axiosReq.get(`/comments/?post=${id}`))
+                setComments(comment)
             } catch (err) {
             }
         };
@@ -40,7 +42,7 @@ function PostPage() {
     return (
         <Row className="h-100">
             <Col className="py-2 p-0 p-lg-2" lg={8}>
-                <p>Popular profiles for mobile</p>
+                <PopularProfiles mobile />
                 <Post {...post.results[0]} setPosts={setPost} postPage />
                 <Container className={appStyles.Content}>
                     {currentUser ? (
@@ -51,11 +53,11 @@ function PostPage() {
                             setPost={setPost}
                             setComments={setComments}
                         />
-                    ) : comments.results.length ? (
+                    ) : comment.results.length ? (
                         "Comments"
                     ) : null}
-                    {comments.results.length ? (
-                        comments.results.map((comment) => (
+                    {comment.results.length ? (
+                        comment.results.map((comment) => (
                             <Comment
                                 key={comment.id}
                                 {...comment}
@@ -71,7 +73,7 @@ function PostPage() {
                 </Container>
             </Col>
             <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-                Popular profiles for desktop
+                <PopularProfiles />
             </Col>
         </Row>
     );
