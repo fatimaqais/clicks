@@ -12,10 +12,7 @@ import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import {
-    useProfileData,
-    useSetProfileData,
-} from "../../contexts/ProfileDataContext";
+import { useProfileData,useSetProfileData } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -79,20 +76,20 @@ function ProfilePage() {
                     <h3 className="m-2">{profiles?.owner}</h3>
                     <Row className="justify-content-center no-gutters">
                         <Col xs={3} className="my-2">
-                            <div>{profiles?.posts_count}</div>
                             <div>posts</div>
+                            <div>{profiles?.posts_count}</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profiles?.events_count}</div>
                             <div>events</div>
+                            <div>{profiles?.events_count}</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profiles?.followers_count}</div>
                             <div>followers</div>
+                            <div>{profiles?.followed_count}</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profiles?.following_count}</div>
                             <div>following</div>
+                            <div>{profiles?.following_count}</div>
                         </Col>
                     </Row>
                 </Col>
