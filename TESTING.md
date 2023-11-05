@@ -1,8 +1,6 @@
-# **Happening**
+# **Clicks**
 
 # Frontend Testing
-
-## Table of Contents
 
 * [**Testing**](<#testing>)
     * [Code Validation](<#code-validation>)
@@ -31,7 +29,7 @@ No errors or warnings were found when the deployed Clicks URL was passed through
 
 I carried out the following manual tests to check all the user story scenarios:
 
-| Status | User Logged Out**
+| Status | **User Logged Out**
 |:-------:|:--------|
 | &check; | When user types in the posts/create or events/create they are redirected to the home page.
 | &check; | User can only see the events and posts main page.
@@ -80,11 +78,10 @@ I carried out the following manual tests to check all the user story scenarios:
 |:-------:|:--------|
 | &check; | Users can view the Popular Profiles component
 | &check; | Clicking on a popular profile avatar, users are redirected to the selected profile page
-| &cross; | Users can view the number of events the profile owner has posted
-| &cross; | Users can view the number of posts the profile owner has posted
-| &cross; | Users can view the number of followers the selected profile has
-| &cross; | Users can view the number of other profiles the selected profile is following
-| &check; | Clicking on the event/post image, users are redirected to the selected event detail page
+| &check; | Users can view the number of events the profile owner has posted
+| &check; | Users can view the number of posts the profile owner has posted
+| &check; | Users can view the number of followers the selected profile has
+| &check; | Users can view the number of other profiles the selected profile is following
 
 | Status | **Navigation - User Logged In**
 |:-------:|:--------|
@@ -139,15 +136,13 @@ I carried out the following manual tests to check all the user story scenarios:
 |:-------:|:--------|
 | &check; | Users can view the Popular Profiles component
 | &check; | Clicking on a popular profile avatar, users are redirected to the selected profile page
-| &cross; | Users can view the number of events and posts the profile owner has posted
-| &cross; | Users can view the number of followers the selected profile has
-| &cross; | Users can view the number of other profiles the selected profile is following
+| &check; | Users can view the number of events and posts the profile owner has posted
+| &check; | Users can view the number of followers the selected profile has
+| &check; | Users can view the number of other profiles the selected profile is following
 | &check; | Clicking on the event image, users are redirected to the selected event detail page
 | &check; | Clicking on an event/post comments count, users are redirected to the selected event/post detail page
-| &cross; | Users can edit their own profile page via the three dots edit/delete menu
-| &cross; | On clicking edit profile, user is redirected to the edit profile page
-| &cross; | User can edit their own username via the three dots edit profile menu
-| &cross; | User can edit their own password via the three dots edit profile menu
+| &check; | Users can edit their own profile page via the three dots edit/delete menu
+| &check; | On clicking edit profile, user is redirected to the edit profile page
 
 ## Responsiveness Testing
 
@@ -177,10 +172,10 @@ Google Lighthouse in Chrome Developer Tools was used to test the application wit
 
 - I had a problem with the create event review form being submitted correctly but not diplaying the review straight away. This was resolved by defining th event field and using the Dev tools application feature and console logs to find out the errors it was displaying.
 
+- I had problems displaying the total count of events and posts created by the user and the total number of followers and followings they have. This was fixed by making changes in the backend view file.
+
+- There was a problem with the comments and reviews linking to the correct post with it's ID. This was fixed by making changes in the backend and adding filter in the comments and event reviews view.py file.
+
 ### Unresolved Bugs
 
-- I was not able to complete the form and get it to display the events_count, post_count, following_count and followed_count. This was due to lack of time. This is something which can be easily resolved only if there was more time.
-
-- I had a problem with the comments and reviews linking to the correct post/event with it's id. This could not be resolved and it was something tutor support couldn't help with either. Beacuse it was taking too much of my time this had to be left as it is.
-
-- I had a problem with profile page displaying all the posts/events instead of just the users owned posts/events. Again this was something that could have been resolved if given more time a I did not have enough time to work on the profiles page.
+- There are no unresolved bugs left in the project.
