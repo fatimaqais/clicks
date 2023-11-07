@@ -173,9 +173,9 @@ Once the user logs in, additional links become available to select:
 * Add Post - Logged in users can access the post creation page to share their own post to the site. 
 * Comments - Users can read and create comments on a post 
 
-![Logged in Navbar](images/navbar-loggedin.jpg)
+![Logged in Navbar](images/loggedin-navbar.png)
 
-![Logged in Navbar Mobile](images/navbar-loggedin-mobile.jpg)
+![Logged in Navbar Mobile](images/loggedin-navbar-mobile.png)
 
 ## Authentication
 
