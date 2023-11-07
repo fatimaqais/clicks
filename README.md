@@ -276,7 +276,7 @@ Throughout the site, wherever you see profile avatars, albeit in the popular pro
 
 ![profile icon](images/avatar.png)
 
-The profile page shows the users total post, events, followings and followers. Due to the lack of time on thei project I wasn't able to finish up this page but it was the same as the moments app.
+The profile page shows the users total post, events, followings and followers. This is incremented or decremented everytime a user follows or unfollows another user. It also shows the user how many posts or events they've created. The user can also add their bio where they can share information about themselves.
 
 ![profile page](images/profile-page.png)
 
