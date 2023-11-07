@@ -23,15 +23,6 @@
     margin-left: 60px;
 }
 
-.Image {
-    width: 30%;
-    height: auto;
-    border: 2px solid #EAEAEA;
-    display: flex;
-}
-
-.Col {
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
+.ReviewHeading {
+    color: #EAEAEA;
 }

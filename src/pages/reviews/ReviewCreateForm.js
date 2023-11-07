@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+import { Form, InputGroup } from "react-bootstrap";
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import styles from "../../styles/ReviewCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -54,34 +53,45 @@ function ReviewCreateForm(props) {
                     <Link to={`/profiles/${profile_id}`}>
                         <Avatar src={profileImage} />
                     </Link>
-                    <Form.Control
-                        className={styles.Form}
-                        placeholder="my comment..."
-                        as="textarea"
-                        value={review}
-                        onChange={handleChange}
-                        rows={2}
-                    />
-                    <Form.Control className={`${styles.Input}`}
-                        as="select"
-                        name="rating"
-                        value={rating}
-                        onChange={handleRating}
-                    >
-                        <option>Excellent</option>
-                        <option>Good</option>
-                        <option>Average</option>
-                        <option>Bad</option>
-                        <option>Horrible</option>
-                    </Form.Control>
+                    <div className={`${styles.Display}`}>
+                        <span>
+                            <p>Leave a review:</p>
+                            <Form.Control
+                                className={styles.Form}
+                                placeholder="my review..."
+                                as="textarea"
+                                value={review}
+                                onChange={handleChange}
+                                rows={2}
+                            />
+                        </span>
+                        <span>
+                            <p>Rate the Event:</p>
+                            <Form.Control className={`${styles.Input}`}
+                                as="select"
+                                name="rating"
+                                value={rating}
+                                onChange={handleRating}
+                            >
+                                <option>Excellent</option>
+                                <option>Good</option>
+                                <option>Average</option>
+                                <option>Bad</option>
+                                <option>Horrible</option>
+                            </Form.Control>
+                        </span>
+                    </div>
                 </InputGroup>
             </Form.Group>
-            <button
-                className={`${styles.Button} d-block `}
-                type="submit"
-            >
-                Post
-            </button>
+            <div className={`${styles.Display}`}>
+                <span className={`${styles.Message}`}>You can only review an event once!</span>
+                <span><button
+                    className={`${styles.Button} d-block `}
+                    type="submit"
+                >
+                    Post
+                </button></span>
+            </div>
         </Form>
     );
 }

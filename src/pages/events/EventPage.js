@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {Col, Row, Container} from "react-bootstrap";
 
 import appStyles from "../../App.module.css";
+import styles from "../../styles/Review.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Event from "./Event";
@@ -41,7 +42,7 @@ function EventPage() {
             <Col className="py-2 p-0 p-lg-2" lg={8}>
                 <PopularProfiles mobile />
                 <Event {...event.results[0]} setEvent={setEvent} eventPage />
-                <Container className={appStyles.Content}>
+                <Container className={`${appStyles.Content} ${styles.ReviewHeading}`}>
                     {currentUser ? (
                         <ReviewCreateForm
                             profile_id={currentUser.profile_id}
