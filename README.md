@@ -157,7 +157,7 @@ The navigation bar is very clean and straight forward. Depending on whether you 
 
 On accessing the site for the first time, the user is logged out and the following menu items are visible:
 
-* Clicks Logo - On the far left hand side of the navigatin bar is the Happening brand logo. This is visible throughout the site to all user types and contains a link back to the homepage. 
+* Clicks Logo - On the far left hand side of the navigatin bar is the Clicks brand logo. This is visible throughout the site to all user types and contains a link back to the homepage. 
 * Home - the first menu item, and the initial default start page, is 'Home', where all events shared among the community are displayed. 
 * Events - the secind menu item, and the initial default start page, is 'Home', where all events shared are displayed.
 * Authentication - Then the last two options are a sign in and signup options.
@@ -174,6 +174,7 @@ Once the user logs in, additional links become available to select:
 * Comments - Users can read and create comments on a post 
 
 ![Logged in Navbar](images/navbar-loggedin.jpg)
+
 ![Logged in Navbar Mobile](images/navbar-loggedin-mobile.jpg)
 
 ## Authentication
