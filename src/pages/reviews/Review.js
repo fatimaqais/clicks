@@ -28,9 +28,11 @@ const Review = (props) => {
 
             setReviews((prevReviews) => ({
                 ...prevReviews,
-                results: prevReviews.results.filter((review) => review.id !== id),
+                results: prevReviews.results.filter((eventreviews) => eventreviews.id !== id),
             }));
-        } catch (err) { }
+        } catch (err) { 
+            console.log(setReviews)
+        }
     };
 
 
@@ -56,8 +58,8 @@ const Review = (props) => {
                             review={review}
                             rating={rating}
                             profileImage={profile_image}
-                            setReviews={setReviews}
                             setShowEditForm={setShowEditForm}
+                            setReviews={setReviews}
                         />
                     ) : (
                         <span>

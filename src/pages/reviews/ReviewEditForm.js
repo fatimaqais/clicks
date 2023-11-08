@@ -7,12 +7,13 @@ import styles from "../../styles/ReviewCreateEditForm.module.css";
 
 function ReviewEditForm(props) {
     const { id, review, rating, setShowEditForm, setReviews } = props;
+    console.log(setReviews)
 
-    const [formContent, setFormContent] = useState(review);
+    const [formReview, setFormReview] = useState(review);
     const [formRating, setFormRating] = useState(rating);
 
     const handleChange = (event) => {
-        setFormContent(event.target.value);
+        setFormReview(event.target.value);
     };
 
     const handleRating = (event) => {
@@ -23,7 +24,7 @@ function ReviewEditForm(props) {
         event.preventDefault();
         try {
             await axiosRes.put(`/eventreviews/${id}`, {
-                review: formContent.trim(),
+                review: formReview.trim(),
                 rating: formRating.trim(),
             });
             setReviews((prevReviews) => ({
@@ -32,7 +33,7 @@ function ReviewEditForm(props) {
                     return eventreviews.id === id
                         ? {
                             ...eventreviews,
-                            review: formContent.trim(),
+                            review: formReview.trim(),
                             rating: formRating.trim(),
                             updated_at: "now",
                         }
@@ -53,7 +54,7 @@ function ReviewEditForm(props) {
                         <Form.Control
                             className={styles.Form}
                             as="textarea"
-                            value={formContent}
+                            value={formReview}
                             onChange={handleChange}
                             rows={2}
                         /></span>

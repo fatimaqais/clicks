@@ -28,6 +28,7 @@ function EventPage() {
                     axiosReq.get(`/eventreviews/?event=${id}`)
                 ]);
                 setEvent({ results: [event] });
+                console.log(await axiosReq.get(`/comments/?post=${id}`))
                 setReviews(eventreviews);
             } catch (err) {
 
@@ -52,11 +53,11 @@ function EventPage() {
                             setReviews={setReviews}
                         />
                     ) : eventreviews.results.length ? (
-                        <h3>Reviews</h3>
+                        "Reviews"
                     ) : null}
                     {eventreviews.results.length ? (
                         eventreviews.results.map((review) => (
-                            <Review key={review.id} {...review} />
+                            <Review key={review.id} {...review} setEvent={setEvent} setReviews={setReviews} />
                         ))
                     ) : currentUser ? (
                         <span>No reviews yet, be the first to leave a review!</span>
