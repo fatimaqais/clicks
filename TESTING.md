@@ -176,6 +176,8 @@ Google Lighthouse in Chrome Developer Tools was used to test the application wit
 
 - There was a problem with the comments and reviews linking to the correct post with it's ID. This was fixed by making changes in the backend and adding filter in the comments and event reviews view.py file.
 
+- There was a problem with the Event reviews not displaying the changes made, without having to reload the page. This was fixed by adding the setReviews function in the EventPage file as a prop. The reviews are now being edited and delted successfully and the changes are being displayed without having to reload whole the page each time.
+
 ### Unresolved Bugs
 
 - There are no unresolved bugs left in the project.
