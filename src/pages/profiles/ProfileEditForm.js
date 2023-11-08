@@ -11,6 +11,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/Profile.module.css";
 
 const ProfileEditForm = () => {
     const currentUser = useCurrentUser();
@@ -77,22 +78,24 @@ const ProfileEditForm = () => {
 
     const textFields = (
         <>
-            <Form.Group>
-                <Form.Label>Bio</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    value={status}
-                    onChange={handleChange}
-                    name="status"
-                    rows={7}
-                />
-            </Form.Group>
+            <div className={`${styles.Text} ${styles.Margin}`}>
+                <Form.Group>
+                    <Form.Label>Add information about yourself</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        value={status}
+                        onChange={handleChange}
+                        name="status"
+                        rows={7}
+                    />
+                </Form.Group>
 
-            {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
+                {errors?.content?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </div>
             <div>
                 <Button className={`${btnStyles.Button} ${btnStyles.Bright}`} onClick={() => history.goBack()}>
                     Cancel
@@ -120,12 +123,13 @@ const ProfileEditForm = () => {
                                     {message}
                                 </Alert>
                             ))}
-                            <div>
+                            <div className={styles.Margin}>
                                 <Form.Label
-                                    className={`${btnStyles.Button} my-auto`}
                                     htmlFor="image-upload"
                                 >
-                                    Change the image
+                                    <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
+                                        Change Image
+                                    </Button>
                                 </Form.Label>
                             </div>
                             <Form.File
